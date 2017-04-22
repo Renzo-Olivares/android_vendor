@@ -12,10 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ifneq ($(filter sailfish,$(TARGET_DEVICE)),)
-LOCAL_STEM := sailfish/BoardConfigPartial.mk
-else
-LOCAL_STEM := marlin/BoardConfigPartial.mk
-endif
+LOCAL_STEM := marlin/device-partial.mk
 
--include vendor/google/$(LOCAL_STEM)
+$(call inherit-product-if-exists, vendor/google/$(LOCAL_STEM))
